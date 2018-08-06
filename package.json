@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +14,12 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "node-cron": "^1.2.1"
+  },
+  "now": {
+    "alias": "todo-line-bot",
+    "env": {
+      "LINE_CHANNEL_SECRET_TOKE": "@line-secret-channel-token",
+      "LINE_CHANNEL__TOKE": "@line-channel-token"
+    }
   }
 }

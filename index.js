@@ -25,11 +25,13 @@ function batchpushMessage() {
     //userIDをjsonファイルから取得する
     var todo_json_file_data = JSON.parse(fs.readFileSync('to_do.json'));
     const userIds = todo_json_file_data.map(json => json.id);
-    cron.schedule('* */4 * * *', function () {
+    cron.schedule('0 */4 * * *', function () {
+        console.log(userIds);
         userIds.forEach(id => {
             if (id != undefined || id != "ssss") {
                 client.getProfile(id).then((profile) => {;
                     let userName = profile.displayName;
+                    console.log(`${userName}にバッチ処理`);
                     let todo = getToDoList(userName);
                     let message = `${userName}さんの今日することは、${todo} です.`;
                     pushMessage(id, message);
@@ -85,7 +87,7 @@ function getToDoList(userName) {
         var toDoOfTheDay = to_to_json[0].todo[day];
     } else if (userName == 'きんしょーなな') {
         var toDoOfTheDay = to_to_json[1].todo[day];
-    } else if (userName == '金正') {
+    } else if (userName == 'kinn') {
         var toDoOfTheDay = to_to_json[2].todo[day];
     } else {
         var toDoOfTheDay = to_to_json[3].todo[day];
